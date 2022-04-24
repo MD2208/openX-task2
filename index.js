@@ -1,9 +1,7 @@
 const usersUrl = 'https://fakestoreapi.com/users';
 const cartsUrl = 'https://fakestoreapi.com/carts';
 const productsUrl = 'https://fakestoreapi.com/products';
-// let usersData;
-// let cartsData;
-// let productsData;
+//Get Users Data
 async function fetchUsers() {
   try {
     const response = await fetch(usersUrl);
@@ -90,7 +88,7 @@ const highVC = Promise.all([usersPromise, productsPromise, cartsPromise]).then((
   });
   console.log(highestValuedCart); /// <<-- complete answer to 3rd part of the task
   return highestValuedCart
-}); // do 3rd task inside this promise
+});
 /// DISTANCE FORMULA USING GEOCOORDINATES BELOW
 // const R = 6371e3; // metres
 // const f1 = lat1 * Math.PI/180; // f, l in radians
@@ -145,5 +143,5 @@ usersPromise.then((data) => {
       maxDistanceUsers.push(user);
     }
   });
-  console.log(maxDistanceUsers); // <<---- The users who has longest distance
+  console.log(maxDistanceUsers); // <<---- The users who have longest distance from each others.
 });
