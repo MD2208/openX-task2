@@ -116,7 +116,12 @@ const highVC = Promise.all([usersPromise, productsPromise, cartsPromise]).then((
     }
   });
   console.log(highestValuedCart); /// <<-- complete answer to 3rd part of the task
-  return highestValuedCart
+  $(function(){
+     	//Create a new visualizer object
+     	var _visualizer = new visualizer($(".hvc"));
+     	//Visualize the demo json object
+     	_visualizer.visualize(highestValuedCart);
+     });
 });
 /// DISTANCE FORMULA USING GEOCOORDINATES BELOW
 // const R = 6371e3; // metres
