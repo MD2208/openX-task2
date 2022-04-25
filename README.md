@@ -16,3 +16,8 @@ Products: https://fakestoreapi.com/products <br>
 products of a given category <br>
 3. Finds a cart with the highest value, determines its value and full name of its owner <br>
 4. Finds the two users living furthest away from each other <br>
+
+###### PS:  
+
+The visualizer code adapted from the following Github repository: <br>
+https://github.com/moappi/visualizer.json2html
