@@ -16,6 +16,13 @@ async function fetchUsers() {
 }
 const usersPromise = fetchUsers();
 usersPromise.then((usersData) => {console.log(usersData)}); // The first data which we fetched from API.
+// WRITING DATA TO HTML WITH A JSON VISUALIZER
+$(function(){
+     //Create a new visualizer object
+     var _visualizer = new visualizer($(".users"));
+     //Visualize the demo json object
+     usersPromise.then((usersData) => {_visualizer.visualize(usersData)});
+   });
 // Get Products data
 async function fetchProducts() {
   try {
@@ -31,6 +38,14 @@ async function fetchProducts() {
 }
 const productsPromise = fetchProducts();
 productsPromise.then((productsData) => {console.log(productsData)}); // the data which we fetched from products api.
+// WRITING DATA TO HTML WITH A JSON VISUALIZER
+$(function(){
+     //Create a new visualizer object
+     var _visualizer = new visualizer($(".products"));
+     //Visualize the demo json object
+     productsPromise.then((productsData) => {_visualizer.visualize(productsData)});
+   });
+//Part 2
 productsPromise.then((productsData) => {
   let categories = [{categoryName: "",value: 0}];
   productsData.forEach(function(product) {
@@ -47,7 +62,14 @@ productsPromise.then((productsData) => {
   });
   categories.shift();
   console.log(categories); /// <--- complete answer to 2. part in the task
+  $(function(){
+       //Create a new visualizer object
+       var _visualizer = new visualizer($(".part2"));
+       //Visualize the demo json object
+       _visualizer.visualize(categories);
+     });
 });
+
 /// Carts DATA
 async function fetchCarts() {
   try {
@@ -63,6 +85,13 @@ async function fetchCarts() {
 }
 const cartsPromise = fetchCarts();
 cartsPromise.then((cartsData) => {console.log(cartsData)}); /// completes the 1st part of the task with the above commented logs.!
+// WRITING DATA TO HTML WITH A JSON VISUALIZER
+$(function(){
+     //Create a new visualizer object
+     var _visualizer = new visualizer($(".carts"));
+     //Visualize the demo json object
+     cartsPromise.then((cartsData) => {_visualizer.visualize(cartsData)});
+   });
 //Highest Card Below
 const highVC = Promise.all([usersPromise, productsPromise, cartsPromise]).then((datas) => {
   let highestValuedCart;
@@ -133,7 +162,6 @@ usersPromise.then((data) => {
     }
   }
   const maxDistanceArray = distArr.pop(); /// <--- longest distance of users equal to value maxDistanceArray[2];
-  console.log(maxDistanceArray);
   const maxDistanceUsers = [];
   data.forEach(function(user) {
     if (user.id === maxDistanceArray[0] + 1) {
@@ -144,4 +172,11 @@ usersPromise.then((data) => {
     }
   });
   console.log(maxDistanceUsers); // <<---- The users who have longest distance from each others.
+  maxDistanceUsers.push({maximumDistance:maxDistanceArray[2]}); // <<--- we created an array of objects with maximum distance and the users.
+  $(function(){
+     	//Create a new visualizer object
+     	var _visualizer = new visualizer($(".maxdistusers"));
+     	//Visualize the demo json object
+     	_visualizer.visualize(maxDistanceUsers);
+     });
 });
